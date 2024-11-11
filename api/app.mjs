@@ -135,8 +135,8 @@ app.get("/posts", async (req, res) => {
   try {
     const category = req.query.category ? req.query.category.trim() : null;
     const keywords = req.query.keywords ? req.query.keywords.trim() : null;
-    let page = parseInt(req.query.page) || 1; // กำหนดค่า page เป็นตัวเลข
-    let PAGE_SIZE = parseInt(req.query.limit) || 6; // กำหนดค่า limit เป็นตัวเลข
+    let page = parseInt(req.query.page) || 1;
+    let PAGE_SIZE = parseInt(req.query.limit) || 6;
 
     const offset = (page - 1) * PAGE_SIZE;
 
@@ -175,7 +175,7 @@ app.get("/posts", async (req, res) => {
     });
   } catch (e) {
     return res.json({
-      message: e.message,
+      message: "Server could not read post because database connection",
     });
   }
 });
