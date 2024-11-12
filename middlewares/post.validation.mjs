@@ -19,13 +19,13 @@ const validateCreatePostData = (req, res, next) => {
     });
   }
 
-  if (!req.body.category) {
+  if (!req.body.category_id) {
     return res.status(400).json({
-      message: "Category is required",
+      message: "Category ID is required",
     });
-  } else if (typeof req.body.category !== "number") {
+  } else if (typeof req.body.category_id !== "number") {
     return res.status(400).json({
-      message: "Category must be a string",
+      message: "Category ID must be a number",
     });
   }
 
@@ -49,13 +49,13 @@ const validateCreatePostData = (req, res, next) => {
     });
   }
 
-  if (!req.body.status) {
+  if (!req.body.status_id) {
     return res.status(400).json({
-      message: "Status is required",
+      message: "Status ID is required",
     });
-  } else if (typeof req.body.status !== "string") {
+  } else if (typeof req.body.status_id !== "number") {
     return res.status(400).json({
-      message: "Status must be a string",
+      message: "Status ID must be a number",
     });
   }
 

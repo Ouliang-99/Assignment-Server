@@ -7,8 +7,12 @@ const port = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
-app.use('/posts', postRouter);
+app.use("/posts", postRouter);
 
-app.listen(port, () => {
-  console.log(`Server is running at ${port}`);
+app.listen(port, (error) => {
+  if (error) {
+    console.error("Server failed to start:", error);
+  } else {
+    console.log(`Server is running at ${port}`);
+  }
 });
