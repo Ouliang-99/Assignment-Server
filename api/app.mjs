@@ -1,6 +1,7 @@
 import express from "express";
 import { pool } from "../utils/db.mjs";
 import cors from "cors";
+import validateCreatePostData from "../middlewares/post.validation.mjs";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -8,7 +9,7 @@ const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
-app.post("/posts", async (req, res) => {
+app.post("/posts",[validateCreatePostData], async (req, res) => {
   const { title, image, description, content, status_id } = req.body;
 
   if (!title || !image || !description || !content || !status_id) {
@@ -64,7 +65,7 @@ app.get("/posts/:postId", async (req, res) => {
   }
 });
 
-app.put("/posts/:postId", async (req, res) => {
+app.put("/posts/:postId",[validateCreatePostData], async (req, res) => {
   const { title, image, description, content, status_id, category_id } =
     req.body;
   const postIdFromClient = req.params.postId;
